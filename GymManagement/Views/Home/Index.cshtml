@@ -1,0 +1,43 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<main>
+    <section class="row" aria-labelledby="aspnetTitle">
+        <h1 id="title">Student List</h1>
+
+    </section>
+
+    <div class="row">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Roll No</th>
+                    <th scope="col">Student Name</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row">1</th>
+                    <td>Aashish</td>
+
+                </tr>
+                <tr>
+                    <th scope="row">2</th>
+                    <td>Sushan</td>
+                </tr>
+
+            </tbody>
+        </table>
+    </div>
+</main>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script>
+var msg = '@TempData["Message"]';
+        if (msg != '') {
+            alert(msg)
+    }
+    </script>
+}
