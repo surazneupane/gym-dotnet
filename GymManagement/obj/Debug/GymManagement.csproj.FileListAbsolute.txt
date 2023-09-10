@@ -159,8 +159,11 @@ C:\Users\Susan\OneDrive\Desktop\Gym\GymManagement\GymManagement\bin\System.Web.W
 C:\Users\Susan\OneDrive\Desktop\Gym\GymManagement\GymManagement\bin\Newtonsoft.Json.xml
 C:\Users\Susan\OneDrive\Desktop\Gym\GymManagement\GymManagement\bin\Antlr3.Runtime.pdb
 C:\Users\Susan\OneDrive\Desktop\Gym\GymManagement\GymManagement\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
-C:\Users\Susan\OneDrive\Desktop\Gym\GymManagement\GymManagement\obj\Debug\GymManagement.csproj.AssemblyReference.cache
 C:\Users\Susan\OneDrive\Desktop\Gym\GymManagement\GymManagement\obj\Debug\GymManagement.csproj.CoreCompileInputs.cache
 C:\Users\Susan\OneDrive\Desktop\Gym\GymManagement\GymManagement\obj\Debug\GymManagement.csproj.CopyComplete
 C:\Users\Susan\OneDrive\Desktop\Gym\GymManagement\GymManagement\obj\Debug\GymManagement.dll
 C:\Users\Susan\OneDrive\Desktop\Gym\GymManagement\GymManagement\obj\Debug\GymManagement.pdb
+C:\Users\Susan\OneDrive\Desktop\Gym\GymManagement\GymManagement\bin\System.Web.dll
+C:\Users\Susan\OneDrive\Desktop\Gym\GymManagement\GymManagement\bin\BCrypt.Net.dll
+C:\Users\Susan\OneDrive\Desktop\Gym\GymManagement\GymManagement\bin\BCrypt.Net.xml
+C:\Users\Susan\OneDrive\Desktop\Gym\GymManagement\GymManagement\obj\Debug\GymManagement.csproj.AssemblyReference.cache

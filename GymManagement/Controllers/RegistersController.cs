@@ -69,6 +69,11 @@ namespace GymManagement.Controllers
 					TempData["Message"] = "User Already exists";
 					return View();
 				}
+
+				// Hash the password using BCrypt
+				string hashedPassword = BCrypt.Net.BCrypt.HashPassword(register.Password);
+				register.Password = hashedPassword;
+
 				register.Userid = Guid.NewGuid();
 				db.Users.Add(register);
 				db.SaveChanges();
@@ -79,6 +84,7 @@ namespace GymManagement.Controllers
 
 			return View(register);
 		}
+
 
 		// GET: Registers/Edit/5
 		//public ActionResult Edit(Guid? id)
