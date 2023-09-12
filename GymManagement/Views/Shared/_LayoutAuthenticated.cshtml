@@ -1,0 +1,142 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
+
+    <style>
+
+        html, body {
+            height: 100%;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        .container.body-content {
+            flex: 1;
+            margin-left: 220px; /* Adjust the margin to accommodate the sidebar */
+        }
+
+        footer {
+            background-color: #f8f9fa;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+            text-align: center;
+            padding: 10px;
+        }
+
+        .navbar {
+            z-index: 1000; /* Ensure navbar stays on top */
+        }
+
+        .sidebar {
+            position: fixed;
+            left: 0;
+            top: 56px; /* Adjusted to match the height of the navbar */
+            height: 100%;
+            width: 220px;
+            background-color: #f8f9fa;
+            border-right: 1px solid #ccc;
+            overflow-y: auto;
+            padding-top: 10px; /* Adjusted for styling */
+        }
+
+            .sidebar ul {
+                list-style-type: none;
+                padding: 0;
+            }
+
+            .sidebar li {
+                margin: 0;
+                padding: 0;
+            }
+
+            .sidebar a {
+                display: block;
+                padding: 10px 15px;
+                text-decoration: none;
+                color: #000;
+                transition: background-color 0.3s;
+            }
+
+                .sidebar a:hover {
+                    background-color: #ccc;
+                }
+    </style>
+
+
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="@Url.Action("Index", "Home")">
+                <img src="@Url.Content("~/Images/logo.png")" alt="Logo" style="width: 50px; height: auto;" />
+            </a>
+            <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" title="Toggle navigation" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
+                <ul class="navbar-nav flex-grow-1">
+                    <li>@Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+                    <li>@Html.ActionLink("About", "About", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+                    <li>@Html.ActionLink("Contact", "Contact", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+                </ul>
+
+                @if (ViewBag.ShowRegisterLoginLinks)
+                {
+                    <ul class="navbar-nav">
+                        <li>@Html.ActionLink("Register", "Create", "Registers", new { area = "" }, new { @class = "nav-link" })</li>
+                        <li>@Html.ActionLink("Login", "Login", "Registers", new { area = "" }, new { @class = "nav-link" })</li>
+                    </ul>
+                }
+            </div>
+        </div>
+    </nav>
+
+    <div class="d-flex h-100">
+        <!-- Sidebar -->
+        @*<div class="bg-danger  ">*@
+            <ul class="nav flex-column">
+                <li class="nav-item">
+                    <a class="nav-link" href="@Url.Action("Dashboard", "Home")">Dashboard</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="@Url.Action("Index", "ManageMembershipTypes")"> MembershipTypes Setting</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="@Url.Action("Index", "ManageMemberships")"> Memberships Setting</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="@Url.Action("Index", "ManageClasses")"> Classes Setting</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="@Url.Action("Index", "ManageTrainingSessions")"> Training Sessions Setting</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="@Url.Action("ManageSchedules", "Home")"> Schedules</a>
+                </li>
+            </ul>
+        
+
+
+        <div class="container">
+            @RenderSection("BodyContent", required: false)
+            <hr />
+
+        </div>
+
+    </div>
+    <footer>
+        <p>&copy; @DateTime.Now.Year - Gym Fitness</p>
+    </footer>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

@@ -1,0 +1,46 @@
+﻿@model GymManagement.Models.TrainingSession
+
+@{
+    ViewBag.Title = "Edit Training Session";
+    Layout = "~/Views/Shared/_LayoutAuthenticated.cshtml";
+}
+
+@section BodyContent {
+    <h2>@ViewBag.Title</h2>
+    <hr />
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="mb-3 row">
+            <label for="ClassID" class="col-sm-2">Class ID:</label>
+            <div class="col-sm-4">
+                <input type="text" class="form-control" id="ClassID" name="ClassID" value="@Model.ClassID" readonly>
+            </div>
+        </div>
+
+        <div class="mb-3 row">
+            <label for="StaffID" class="col-sm-2">Staff ID:</label>
+            <div class="col-sm-4">
+                <input type="text" class="form-control" id="StaffID" name="StaffID" value="@Model.StaffID" readonly>
+            </div>
+        </div>
+
+        <div class="mb-3 row">
+            <label for="DateTime" class="col-sm-2">Date and Time:</label>
+            <div class="col-sm-4">
+                <input type="datetime-local" class="form-control" id="DateTime" name="DateTime" value="@Model.DateTime.ToString("yyyy-MM-ddTHH:mm")" required>
+            </div>
+        </div>
+
+        <div class="mb-3 row">
+            <label for="Capacity" class="col-sm-2">Capacity:</label>
+            <div class="col-sm-4">
+                <input type="number" class="form-control" id="Capacity" name="Capacity" value="@Model.Capacity" required>
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Save Changes</button>
+    }
+}

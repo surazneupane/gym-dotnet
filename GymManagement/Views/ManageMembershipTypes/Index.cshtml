@@ -1,0 +1,73 @@
+﻿@model List<GymManagement.Models.MembershipType>
+
+@{
+    ViewBag.Title = " Membership Types";
+    Layout = "~/Views/Shared/_LayoutAuthenticated.cshtml";
+}
+
+@section BodyContent {
+    <!-- Your content goes here -->
+
+    <h2>@ViewBag.Title</h2>
+    <hr />
+
+    <form action="@Url.Action("Create", "ManageMembershipTypes")" method="post">
+
+        <div class="mb-3 row">
+            @*<div class="col">*@
+            <label for="Type" class="col-sm-1 ">Type:</label>
+            <div class="col-sm-4">
+                <input type="text" class="form-control" id="Type" name="Type" required>
+
+
+            </div>
+            @*<div class="col">*@
+            <label for="Cost" class="col-sm-1">Cost:</label>
+            <div class="col-sm-4">
+                <input type="number" step="0.01" class="form-control" id="Cost" name="Cost" required>
+            </div>
+
+        </div>
+        <br />
+        <button type="submit" class="btn btn-primary">Add Membership Type</button>
+
+    </form>
+    <hr />
+
+    <h3>List of Membership Types</h3>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Type</th>
+                <th>Cost</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var membershipType in Model)
+            {
+            <tr>
+                <td>@membershipType.ID</td>
+                <td>@membershipType.Type</td>
+                <td>@membershipType.Cost</td>
+                <td>
+                    <a href="@Url.Action("Edit", "ManageMembershipTypes", new { id = membershipType.ID })" style="display:inline-block; margin-right: 10px;">
+                        <i class="fa fa-edit"></i>
+                    </a>
+
+                    <form action="@Url.Action("Delete", "ManageMembershipTypes")" method="post" style="display:inline-block;" onsubmit="return confirm('Are you sure you want to delete?');">
+                        @Html.AntiForgeryToken()
+                        <input type="hidden" name="id" value="@membershipType.ID" />
+                        <button type="submit" class="btn btn-link">
+                            <i class="fa fa-trash"></i>
+                        </button>
+                    </form>
+                </td>
+
+            </tr>
+            }
+        </tbody>
+    </table>
+  
+}

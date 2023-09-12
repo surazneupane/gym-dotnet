@@ -1,0 +1,88 @@
+﻿@model GymManagement.Models.TrainingSessionViewModel
+
+@{
+    ViewBag.Title = "Manage Training Sessions";
+    Layout = "~/Views/Shared/_LayoutAuthenticated.cshtml";
+}
+
+@section BodyContent {
+    <!-- Your content goes here -->
+    <h2>@ViewBag.Title</h2>
+    <hr />
+
+    <form action="@Url.Action("Create", "ManageTrainingSessions")" method="post">
+            <div class="mb-3 row">
+                <label for="ClassID" class="col-sm-2 ">Class:</label>
+                <div class="col-sm-4">
+                    <select class="form-control" id="ClassID" name="ClassID" required>
+                        @foreach (var gymClass in Model.Classes)
+                        {
+                            <option value="@gymClass.ID">@gymClass.ClassName</option>
+                        }
+                    </select>
+                </div>
+
+                <label for="StaffID" class="col-sm-2 ">Staff ID:</label>
+                <div class="col-sm-4">
+                    <select class="form-control" id="StaffID" name="StaffID" required>
+                        @foreach (var staff in Model.Staff)
+                        {
+                            <option value="@staff.UserId">@staff.UserName</option>
+                        }
+                    </select>
+                </div>
+            </div>
+           
+
+        <div class="mb-3 row">
+            <label for="DateTime" class="col-sm-2 ">Date and Time:</label>
+            <div class="col-sm-4">
+                <input type="datetime-local" class="form-control" id="DateTime" name="DateTime" required>
+            </div>
+
+            <label for="Capacity" class="col-sm-2 ">Capacity:</label>
+            <div class="col-sm-4">
+                <input type="number" class="form-control" id="Capacity" name="Capacity" required>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary">Add Training Session</button>
+    </form>
+    <hr />
+
+    <h3>List of Training Sessions</h3>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Class Name</th>
+                <th>Staff Name</th>
+                <th>Date and Time</th>
+                <th>Capacity</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var trainingSession in Model.TrainingSessions)
+            {
+            <tr>
+                <td>@trainingSession.ID</td>
+                <td>@trainingSession.Class.ClassName</td>
+                <td>@trainingSession.StaffID</td>
+                <td>@trainingSession.DateTime.ToString("yyyy-MM-dd HH:mm")</td>
+                <td>@trainingSession.Capacity</td>
+                <td>
+                    <a href="@Url.Action("Edit", "ManageTrainingSessions", new { id = trainingSession.ID })">
+                        <i class="fa fa-edit"></i>
+                    </a>
+                    <form action="@Url.Action("Delete", "ManageTrainingSessions", new { id = trainingSession.ID })" method="post" style="display:inline-block;" onsubmit="return confirm('Are you sure you want to delete?');">
+                        @Html.AntiForgeryToken()
+                        <button type="submit" class="btn btn-link">
+                            <i class="fa fa-trash"></i>
+                        </button>
+                    </form>
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+}

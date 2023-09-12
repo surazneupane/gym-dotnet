@@ -33,40 +33,47 @@ namespace GymManagement.Controllers
 		// GET: Registers/Create
 		public ActionResult Create()
 		{
+			ViewBag.ShowRegisterLoginLinks = false;
 			return View();
 		}
 
 		public ActionResult Login()
 		{
+			ViewBag.ShowRegisterLoginLinks = false;
 			return View();
 		}
 		[HttpPost]
 		public ActionResult Login(Models.Login login)
 		{
-			var data = db.Users.Where(x => x.UserName == login.Username && x.Password == login.Password);
-			if (data != null)
-			{
+			var user = db.Users.FirstOrDefault(x => x.UserName == login.Username && x.Password == login.Password);
 
+			if (user != null)
+			{
 				TempData["Message"] = "Login Successfully";
-				return RedirectToAction("Index", "Home");
+				return RedirectToAction("Dashboard", "Home");
 			}
 			else
 			{
-				TempData["Message"] = "Login Failed username or password missing";
+				TempData["Message"] = "Login Failed. Username or password is incorrect.";
+				ViewBag.ShowRegisterLoginLinks = false;
 				return View();
 			}
 		}
 
+
+
+
 		[HttpPost]
 		[ValidateAntiForgeryToken]
-		public ActionResult Create([Bind(Include = "Userid,UserName,Password,Email")] Register register)
+		public ActionResult Create(Register register, bool isGymStaff = false)
 		{
 			if (ModelState.IsValid)
 			{
-				var data = db.Users.Where(x => x.UserName == register.UserName);
-				if (data.Any())
+				var existingUser = db.Users.FirstOrDefault(x => x.UserName == register.UserName);
+				if (existingUser != null)
 				{
 					TempData["Message"] = "User Already exists";
+					ViewBag.ShowRegisterLoginLinks = false;
 					return View();
 				}
 
@@ -74,7 +81,18 @@ namespace GymManagement.Controllers
 				string hashedPassword = BCrypt.Net.BCrypt.HashPassword(register.Password);
 				register.Password = hashedPassword;
 
-				register.Userid = Guid.NewGuid();
+				register.UserId = Guid.NewGuid();
+
+				// Assign the role based on the isGymStaff parameter
+				if (isGymStaff)
+				{
+					register.Role = "GymStaff";
+				}
+				else
+				{
+					register.Role = "Member";
+				}
+
 				db.Users.Add(register);
 				db.SaveChanges();
 
@@ -84,6 +102,8 @@ namespace GymManagement.Controllers
 
 			return View(register);
 		}
+
+
 
 
 		// GET: Registers/Edit/5
