@@ -67,7 +67,7 @@
             <tr>
                 <td>@trainingSession.ID</td>
                 <td>@trainingSession.Class.ClassName</td>
-                <td>@trainingSession.StaffID</td>
+                <td>@Model.GetUsernameForStaffID(trainingSession.StaffID)</td>
                 <td>@trainingSession.DateTime.ToString("yyyy-MM-dd HH:mm")</td>
                 <td>@trainingSession.Capacity</td>
                 <td>

@@ -1,0 +1,28 @@
+﻿@model List<GymManagement.Models.SummaryReportViewModel>
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section BodyContent {
+    <div class="container">
+        <h2>Summary Report</h2>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Membership Type</th>
+                    <th>Number of Members</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.MembershipType</td>
+                        <td>@item.MemberCount</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}

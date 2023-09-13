@@ -13,10 +13,10 @@
 
     <form action="@Url.Action("Create", "ManageMemberships")" method="post">
         <div class="mb-3 row">
-            <label for="MemberID" class="col-sm-2 ">Member ID:</label>
+            <label for="MemberID" class="col-sm-2 ">Member :</label>
             <div class="col-sm-4">
                 <select class="form-control" id="MemberID" name="MemberID" required>
-                    @foreach (var user in Model.Users)
+                    @foreach (var user in Model.Users.Where(u => u.Role != "GymStaff"))
                     {
                         <option value="@user.UserId">@user.UserName</option>
                     }
@@ -67,7 +67,7 @@
             {
             <tr>
                 <td>@membership.ID</td>
-                <td>@membership.MemberID</td>
+                <td>@membership.UserName</td>
                 <td>@membership.MembershipType.Type</td>
                 <td>@membership.StartDate.ToString("yyyy-MM-dd")</td>
                 <td>@membership.EndDate.ToString("yyyy-MM-dd")</td>

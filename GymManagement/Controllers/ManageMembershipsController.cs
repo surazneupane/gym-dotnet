@@ -40,8 +40,24 @@ namespace GymManagement.Controllers
 
         private List<Membership> GetMemberships()
         {
-            return db.Memberships.ToList();
+            var memberships = db.Memberships.ToList();
+
+            foreach (var membership in memberships)
+            {
+                if (membership != null)
+                {
+                    var user = db.Users.FirstOrDefault(u => u.UserId == membership.MemberID);
+
+                    if (user != null)
+                    {
+                        membership.UserName = user.UserName;
+                    }
+                }
+            }
+
+            return memberships;
         }
+
 
 
         // Create Membership (GET)

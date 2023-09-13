@@ -176,3 +176,9 @@ C:\Users\Susan\OneDrive\Desktop\Gym\GymManagement\GymManagement\obj\Debug\GymMan
 C:\Users\Susan\OneDrive\Desktop\Gym\GymManagement\GymManagement\obj\Debug\GymManagement.dll
 C:\Users\Susan\OneDrive\Desktop\Gym\GymManagement\GymManagement\obj\Debug\GymManagement.pdb
 C:\Users\Susan\OneDrive\Desktop\Gym\GymManagement\GymManagement\obj\Debug\GymManagement.Migrations.changedstaffidtoguid.resources
+C:\Users\Susan\OneDrive\Desktop\Gym\GymManagement\GymManagement\obj\Debug\GymManagement.Migrations.newmigrationss.resources
+C:\Users\Susan\OneDrive\Desktop\Gym\GymManagement\GymManagement\bin\Microsoft.AspNet.Identity.Core.dll
+C:\Users\Susan\OneDrive\Desktop\Gym\GymManagement\GymManagement\bin\Microsoft.AspNet.Identity.EntityFramework.dll
+C:\Users\Susan\OneDrive\Desktop\Gym\GymManagement\GymManagement\bin\Microsoft.AspNet.Identity.Core.xml
+C:\Users\Susan\OneDrive\Desktop\Gym\GymManagement\GymManagement\bin\Microsoft.AspNet.Identity.EntityFramework.xml
+C:\Users\Susan\OneDrive\Desktop\Gym\GymManagement\GymManagement\obj\Debug\GymManagement.csproj.AssemblyReference.cache

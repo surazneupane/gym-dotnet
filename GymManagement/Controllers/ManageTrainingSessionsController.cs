@@ -11,16 +11,17 @@ namespace GymManagement.Controllers
 {
     public class ManageTrainingSessionsController : Controller
     {
-        private ApplicationDbContext dbContext = new ApplicationDbContext(); // Assuming you have a DbContext named ApplicationDbContext
+        private ApplicationDbContext dbContext = new ApplicationDbContext();
 
         public ActionResult Index()
         {
             ViewBag.ShowRegisterLoginLinks = true;
             var viewModel = new TrainingSessionViewModel
             {
-                Classes = GetClasses(), // Implement a method to get classes
-                Staff = GetStaff(), // Implement a method to get staff members
-                TrainingSessions = GetTrainingSessions() // Implement a method to get training sessions
+                Classes = GetClasses(),
+                Staff = GetStaff(),
+                TrainingSessions = GetTrainingSessions(),
+                GetUsernameForStaffID = GetUsernameForStaffID  // Pass the method to the view
             };
 
             return View(viewModel);
@@ -28,22 +29,16 @@ namespace GymManagement.Controllers
 
         public List<Class> GetClasses()
         {
-            // This method should return a list of classes from your database
-            // For example:
             return dbContext.Classes.ToList();
         }
 
         public List<Register> GetStaff()
         {
-            // This method should return a list of staff members from your database
-            // For example:
             return dbContext.Users.Where(u => u.IsGymStaff).ToList();
         }
 
         public List<TrainingSession> GetTrainingSessions()
         {
-            // This method should return a list of training sessions from your database
-            // For example:
             return dbContext.TrainingSessions.Include(ts => ts.Class).Include(ts => ts.Staff).ToList();
         }
 
@@ -69,37 +64,87 @@ namespace GymManagement.Controllers
         }
 
 
-        // GET: ManageTrainingSessions/Edit/5
+        [HttpGet]
         public ActionResult Edit(int? id)
         {
+            ViewBag.ShowRegisterLoginLinks = true;
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ViewBag.ShowRegisterLoginLinks = true;
+
             TrainingSession trainingSession = dbContext.TrainingSessions.Find(id);
+
+
             if (trainingSession == null)
             {
                 return HttpNotFound();
             }
-            return View(trainingSession);
+
+            TrainingSessionEditViewModel viewModel = new TrainingSessionEditViewModel
+            {
+                TrainingSession = trainingSession,
+                Staff = GetStaff(),
+                SelectedClassName = GetClassNameForClassID(trainingSession.ClassID),
+                SelectedStaffUsername = GetUsernameForStaffID(trainingSession.StaffID),
+            };
+
+            return View(viewModel);
         }
 
-        // POST: ManageTrainingSessions/Edit/5
+
+        private string GetClassNameForClassID(int classID)
+        {
+            // Assuming dbContext is your EF DbContext
+            var className = dbContext.Classes
+                .Where(c => c.ID == classID)
+                .Select(c => c.ClassName)
+                .FirstOrDefault();
+
+            return className;
+        }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,ClassID,StaffID,DateTime,Capacity")] TrainingSession trainingSession)
+        public ActionResult Edit(TrainingSessionEditViewModel viewModel)
         {
             if (ModelState.IsValid)
             {
-                dbContext.Entry(trainingSession).State = EntityState.Modified;
+                // Get the existing training session from the database
+                var existingTrainingSession = dbContext.TrainingSessions.Find(viewModel.TrainingSession.ID);
+
+                // Update properties
+                existingTrainingSession.Capacity = viewModel.TrainingSession.Capacity;
+                
+                existingTrainingSession.DateTime = viewModel.TrainingSession.DateTime;
+
+                //if (viewModel.TrainingSession.DateTime != existingTrainingSession.DateTime)
+                //{
+                //    existingTrainingSession.DateTime = viewModel.TrainingSession.DateTime;
+                //}
+
+                // Update other properties as needed
+
+                // Save changes to the database
                 dbContext.SaveChanges();
+
                 return RedirectToAction("Index");
             }
-            return View(trainingSession);
+
+            viewModel.Staff = GetStaff();
+
+            return View(viewModel);
         }
 
-        // GET: ManageTrainingSessions/Delete/5
+
+
+        private TrainingSession GetTrainingSession(int? id)
+        {
+            return dbContext.TrainingSessions.Include(ts => ts.Class).Include(ts => ts.Staff).FirstOrDefault(ts => ts.ID == id);
+        }
+
+     
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -114,7 +159,6 @@ namespace GymManagement.Controllers
             return View(trainingSession);
         }
 
-        // POST: ManageTrainingSessions/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
@@ -125,7 +169,19 @@ namespace GymManagement.Controllers
             return RedirectToAction("Index");
         }
 
-      
+        private string GetUsernameForStaffID(Guid staffID)
+        {
+            var user = dbContext.Users.FirstOrDefault(u => u.UserId == staffID);
+
+            if (user != null)
+            {
+                return user.UserName;
+            }
+
+            return "Unknown"; // Or some default value if user is not found
+        }
+
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)

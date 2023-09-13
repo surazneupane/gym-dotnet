@@ -1,4 +1,4 @@
-﻿@model GymManagement.Models.TrainingSession
+﻿@model GymManagement.Models.TrainingSessionEditViewModel
 
 @{
     ViewBag.Title = "Edit Training Session";
@@ -12,32 +12,36 @@
     @using (Html.BeginForm())
     {
         @Html.AntiForgeryToken()
+        @Html.HiddenFor(model => model.TrainingSession.ID)
+        @Html.HiddenFor(model => model.TrainingSession.ClassID)
+        @Html.HiddenFor(model => model.TrainingSession.StaffID)
 
         <div class="mb-3 row">
-            <label for="ClassID" class="col-sm-2">Class ID:</label>
+            <label for="ClassID" class="col-sm-2">Class:</label>
             <div class="col-sm-4">
-                <input type="text" class="form-control" id="ClassID" name="ClassID" value="@Model.ClassID" readonly>
+                <input type="text" class="form-control" id="ClassID" name="ClassID" value="@Model.SelectedClassName" readonly>
             </div>
         </div>
 
         <div class="mb-3 row">
-            <label for="StaffID" class="col-sm-2">Staff ID:</label>
+            <label for="StaffID" class="col-sm-2">Staff:</label>
             <div class="col-sm-4">
-                <input type="text" class="form-control" id="StaffID" name="StaffID" value="@Model.StaffID" readonly>
+                <input type="text" class="form-control" id="StaffID" name="StaffID" value="@Model.SelectedStaffUsername" readonly>
             </div>
         </div>
+
 
         <div class="mb-3 row">
             <label for="DateTime" class="col-sm-2">Date and Time:</label>
             <div class="col-sm-4">
-                <input type="datetime-local" class="form-control" id="DateTime" name="DateTime" value="@Model.DateTime.ToString("yyyy-MM-ddTHH:mm")" required>
+                <input type="datetime-local" class="form-control" id="DateTime" name="TrainingSession.DateTime" value="@Model.TrainingSession.DateTime" required>
             </div>
         </div>
 
         <div class="mb-3 row">
             <label for="Capacity" class="col-sm-2">Capacity:</label>
             <div class="col-sm-4">
-                <input type="number" class="form-control" id="Capacity" name="Capacity" value="@Model.Capacity" required>
+                <input type="number" class="form-control" id="Capacity" name="TrainingSession.Capacity" value="@Model.TrainingSession.Capacity" required>
             </div>
         </div>
 

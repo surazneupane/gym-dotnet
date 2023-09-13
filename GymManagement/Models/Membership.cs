@@ -13,6 +13,7 @@ namespace GymManagement.Models
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
         public bool IsPaid { get; set; } // Added payment status
+        public string UserName { get; set; }
         public Register Member { get; set; }
         public MembershipType MembershipType { get; set; }
     }
@@ -65,6 +66,8 @@ namespace GymManagement.Models
         public List<Class> Classes { get; set; }
         public List<Register> Staff { get; set; }
         public List<TrainingSession> TrainingSessions { get; set; }
+
+        public Func<Guid, string> GetUsernameForStaffID { get; set; }
     }
 
     public class EditMembershipViewModel
@@ -72,5 +75,29 @@ namespace GymManagement.Models
         public Membership Membership { get; set; }
         public List<MembershipType> MembershipTypes { get; set; }
     }
+
+    public class TrainingSessionEditViewModel
+    {
+        public TrainingSession TrainingSession { get; set; }
+        public List<Register> Staff { get; set; }
+
+        // Additional properties to hold selected class name and staff username
+        public string SelectedClassName { get; set; }
+        public string SelectedStaffUsername { get; set; }
+    }
+
+    public class MemberDashboardViewModel
+    {
+        public Register User { get; set; }
+        public List<Membership> Memberships { get; set; }
+        public List<MembershipType> MembershipTypes { get; set; }
+    }
+
+    public class SummaryReportViewModel
+    {
+        public string MembershipType { get; set; }
+        public int MemberCount { get; set; }
+    }
+
 
 }

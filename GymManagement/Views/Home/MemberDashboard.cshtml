@@ -1,0 +1,51 @@
+﻿@model GymManagement.Models.MemberDashboardViewModel
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section BodyContent {
+    <div class="row no-gutters">
+        <!-- Added no-gutters class here -->
+        <!-- Dashboard Content -->
+       
+            <!-- Added pl-0 class here -->
+            <h2>Welcome, @Model.User.UserName!</h2>
+            <h3>Your Memberships:</h3>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Membership ID</th>
+                        <th>Start Date</th>
+                        <th>End Date</th>
+                        <th>Membership Type</th>
+                        <!-- Add more columns as needed -->
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var membership in Model.Memberships)
+                    {
+                        <tr>
+                            <td>@membership.MemberID</td>
+                            <td>@membership.StartDate</td>
+                            <td>@membership.EndDate</td>
+                            <td>
+                                @{
+                                    var membershipType = Model.MembershipTypes.FirstOrDefault(mt => mt.ID == membership.MembershipTypeID);
+                                    if (membershipType != null)
+                                    {
+                                        @membershipType.Type
+                                    }
+                                    else
+                                    {
+                                        <text>No Membership Type Assigned</text>
+                                    }
+                                }
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        
+    </div>
+}

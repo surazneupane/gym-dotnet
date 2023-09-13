@@ -9,28 +9,7 @@ namespace GymManagement.Controllers
 	{
 		private ApplicationDbContext db = new ApplicationDbContext();
 
-		// GET: Registers
-		//public ActionResult Index()
-		//{
-		//	return View(db.Users.ToList());
-		//}
-
-		//// GET: Registers/Details/5
-		//public ActionResult Details(Guid? id)
-		//{
-		//	if (id == null)
-		//	{
-		//		return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-		//	}
-		//	Register register = db.Users.Find(id);
-		//	if (register == null)
-		//	{
-		//		return HttpNotFound();
-		//	}
-		//	return View(register);
-		//}
-
-		// GET: Registers/Create
+		
 		public ActionResult Create()
 		{
 			ViewBag.ShowRegisterLoginLinks = false;
@@ -45,12 +24,20 @@ namespace GymManagement.Controllers
 		[HttpPost]
 		public ActionResult Login(Models.Login login)
 		{
-			var user = db.Users.FirstOrDefault(x => x.UserName == login.Username && x.Password == login.Password);
+			var user = db.Users.FirstOrDefault(x => x.UserName == login.Username);
 
-			if (user != null)
+			if (user != null && BCrypt.Net.BCrypt.Verify(login.Password, user.Password))
 			{
 				TempData["Message"] = "Login Successfully";
-				return RedirectToAction("Dashboard", "Home");
+
+				if (user.IsGymStaff)
+				{
+					return RedirectToAction("Dashboard", "Home");
+				}
+				else
+				{
+					return RedirectToAction("MemberDashboard", "Home", new { userId = user.UserId }); // Pass userId as route parameter
+				}
 			}
 			else
 			{
@@ -59,6 +46,7 @@ namespace GymManagement.Controllers
 				return View();
 			}
 		}
+
 
 
 
@@ -83,7 +71,6 @@ namespace GymManagement.Controllers
 
 				register.UserId = Guid.NewGuid();
 
-				// Assign the role based on the isGymStaff parameter
 				if (isGymStaff)
 				{
 					register.Role = "GymStaff";
