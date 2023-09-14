@@ -46,7 +46,7 @@
                 <input type="date" class="form-control" id="EndDate" name="EndDate" required>
             </div>
         </div>
-            <button type="submit" class="btn btn-primary">Add Membership</button>
+        <button type="submit" class="btn btn-primary">Add Membership</button>
     </form>
     <hr />
 
@@ -65,28 +65,33 @@
         <tbody>
             @foreach (var membership in Model.Memberships)
             {
-            <tr>
-                <td>@membership.ID</td>
-                <td>@membership.UserName</td>
-                <td>@membership.MembershipType.Type</td>
-                <td>@membership.StartDate.ToString("yyyy-MM-dd")</td>
-                <td>@membership.EndDate.ToString("yyyy-MM-dd")</td>
-                <td>
-                    <a href="@Url.Action("Edit", "ManageMemberships", new { id = membership.ID })" style="display:inline-block; margin-right: 10px;">
-                        <i class="fa fa-edit"></i> <!-- Edit icon -->
-                    </a>
+                <tr>
+                    <td>@membership.ID</td>
+                    <td>@membership.UserName</td>
+                    <td>@membership.MembershipType.Type</td>
+                    <td>@membership.StartDate.ToString("yyyy-MM-dd")</td>
+                    <td>@membership.EndDate.ToString("yyyy-MM-dd")</td>
+                    <td>
+                        <a href="@Url.Action("Edit", "ManageMemberships", new { id = membership.ID })" style="display:inline-block; margin-right: 10px;">
+                            <i class="fa fa-edit"></i> <!-- Edit icon -->
+                        </a>
 
-                    <form action="@Url.Action("Delete", "ManageMemberships")" method="post" style="display:inline-block;" onsubmit="return confirm('Are you sure you want to delete?');">
-                        @Html.AntiForgeryToken()
-                        <input type="hidden" name="id" value="@membership.ID" />
-                        <button type="submit" class="btn btn-link">
-                            <i class="fa fa-trash"></i> <!-- Delete icon -->
-                        </button>
-                    </form>
-                </td>
+                        <form action="@Url.Action("Delete", "ManageMemberships")" method="post" style="display:inline-block;" onsubmit="return confirm('Are you sure you want to delete?');">
+                            @Html.AntiForgeryToken()
+                            <input type="hidden" name="id" value="@membership.ID" />
+                            <button type="submit" class="btn btn-link">
+                                <i class="fa fa-trash"></i> <!-- Delete icon -->
+                            </button>
+                        </form>
+                    </td>
 
-            </tr>
+                </tr>
             }
         </tbody>
     </table>
+    <style>
+        table, th, td {
+            border: 1px solid black;
+        }
+    </style>
 }

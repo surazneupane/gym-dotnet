@@ -11,28 +11,28 @@
     <hr />
 
     <form action="@Url.Action("Create", "ManageTrainingSessions")" method="post">
-            <div class="mb-3 row">
-                <label for="ClassID" class="col-sm-2 ">Class:</label>
-                <div class="col-sm-4">
-                    <select class="form-control" id="ClassID" name="ClassID" required>
-                        @foreach (var gymClass in Model.Classes)
-                        {
-                            <option value="@gymClass.ID">@gymClass.ClassName</option>
-                        }
-                    </select>
-                </div>
-
-                <label for="StaffID" class="col-sm-2 ">Staff ID:</label>
-                <div class="col-sm-4">
-                    <select class="form-control" id="StaffID" name="StaffID" required>
-                        @foreach (var staff in Model.Staff)
-                        {
-                            <option value="@staff.UserId">@staff.UserName</option>
-                        }
-                    </select>
-                </div>
+        <div class="mb-3 row">
+            <label for="ClassID" class="col-sm-2 ">Class:</label>
+            <div class="col-sm-4">
+                <select class="form-control" id="ClassID" name="ClassID" required>
+                    @foreach (var gymClass in Model.Classes)
+                    {
+                        <option value="@gymClass.ID">@gymClass.ClassName</option>
+                    }
+                </select>
             </div>
-           
+
+            <label for="StaffID" class="col-sm-2 ">Staff ID:</label>
+            <div class="col-sm-4">
+                <select class="form-control" id="StaffID" name="StaffID" required>
+                    @foreach (var staff in Model.Staff)
+                    {
+                        <option value="@staff.UserId">@staff.UserName</option>
+                    }
+                </select>
+            </div>
+        </div>
+
 
         <div class="mb-3 row">
             <label for="DateTime" class="col-sm-2 ">Date and Time:</label>
@@ -64,25 +64,30 @@
         <tbody>
             @foreach (var trainingSession in Model.TrainingSessions)
             {
-            <tr>
-                <td>@trainingSession.ID</td>
-                <td>@trainingSession.Class.ClassName</td>
-                <td>@Model.GetUsernameForStaffID(trainingSession.StaffID)</td>
-                <td>@trainingSession.DateTime.ToString("yyyy-MM-dd HH:mm")</td>
-                <td>@trainingSession.Capacity</td>
-                <td>
-                    <a href="@Url.Action("Edit", "ManageTrainingSessions", new { id = trainingSession.ID })">
-                        <i class="fa fa-edit"></i>
-                    </a>
-                    <form action="@Url.Action("Delete", "ManageTrainingSessions", new { id = trainingSession.ID })" method="post" style="display:inline-block;" onsubmit="return confirm('Are you sure you want to delete?');">
-                        @Html.AntiForgeryToken()
-                        <button type="submit" class="btn btn-link">
-                            <i class="fa fa-trash"></i>
-                        </button>
-                    </form>
-                </td>
-            </tr>
+                <tr>
+                    <td>@trainingSession.ID</td>
+                    <td>@trainingSession.Class.ClassName</td>
+                    <td>@Model.GetUsernameForStaffID(trainingSession.StaffID)</td>
+                    <td>@trainingSession.DateTime.ToString("yyyy-MM-dd HH:mm")</td>
+                    <td>@trainingSession.Capacity</td>
+                    <td>
+                        <a href="@Url.Action("Edit", "ManageTrainingSessions", new { id = trainingSession.ID })">
+                            <i class="fa fa-edit"></i>
+                        </a>
+                        <form action="@Url.Action("Delete", "ManageTrainingSessions", new { id = trainingSession.ID })" method="post" style="display:inline-block;" onsubmit="return confirm('Are you sure you want to delete?');">
+                            @Html.AntiForgeryToken()
+                            <button type="submit" class="btn btn-link">
+                                <i class="fa fa-trash"></i>
+                            </button>
+                        </form>
+                    </td>
+                </tr>
             }
         </tbody>
     </table>
+    <style>
+        table, th, td {
+            border: 1px solid black;
+        }
+    </style>
 }
