@@ -48,7 +48,14 @@ namespace GymManagement.Controllers
 		}
 
 
+		public ActionResult Logout()
+		{
+			// Perform logout logic here (e.g., clearing authentication cookies, session, etc.)
+			ViewBag.ShowRegisterLoginLinks = true;
 
+			TempData["Message"] = "You have been logged out.";
+			return RedirectToAction("Login");
+		}
 
 
 		[HttpPost]

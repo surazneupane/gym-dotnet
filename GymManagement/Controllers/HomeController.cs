@@ -75,17 +75,14 @@ namespace GymManagement.Controllers
 			}
 			else
 			{
-				// Handle the case where the user is not authenticated
-				// For example, you might redirect them to a login page
-				// or return a default value
-				return Guid.Empty; // This is just an example, use an appropriate default value
+				
+				return Guid.Empty; 
 			}
 		}
 
 
 		private List<Membership> GetMembershipsForMember(Guid memberId)
 		{
-			// Implement the logic to query the database and retrieve memberships for the given member ID
 			return db.Memberships.Where(m => m.MemberID == memberId).ToList();
 		}
 

@@ -264,6 +264,8 @@
     <Content Include="Views\ManageTrainingSessions\Edit.cshtml" />
     <Content Include="Views\Home\MemberDashboard.cshtml" />
     <Content Include="Views\SummaryReport\Index.cshtml" />
+    <Content Include="Views\Registers\Logout.cshtml" />
+    <Content Include="Views\Shared\_LayoutAuthenticatedMember.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
