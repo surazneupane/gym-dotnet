@@ -6,8 +6,10 @@ namespace GymManagement
 {
     public class ApplicationDbContext : DbContext
     {
-        public ApplicationDbContext() : base("demoASPEntities")
+        public ApplicationDbContext() : base("Data Source=localhost;Initial Catalog=GymDB;Integrated Security=True;")
         {
+            Database.SetInitializer(new CreateDatabaseIfNotExists<ApplicationDbContext>());
+
         }
 
         public DbSet<Register> Users { get; set; }
