@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@model GymManagement.Models.MemberDashboardViewModel
+
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -93,6 +95,7 @@
                 </ul>
 
                 @if (ViewBag.ShowRegisterLoginLinks)
+
                 {
                     <ul class="navbar-nav">
                         @*<li>@Html.ActionLink("Register", "Create", "Registers", new { area = "" }, new { @class = "nav-link" })</li>*@
@@ -102,9 +105,29 @@
             </div>
         </div>
     </nav>
-
     <div class="d-flex h-100">
-     
+        <!-- Sidebar -->
+        @*<div class="bg-danger  ">*@
+        <div class="bg-light-green" style="background-color: antiquewhite; width: 300px;">
+            <!-- Added class bg-light-green -->
+            <ul class="nav flex-column" style="color:blueviolet">
+                <li class="nav-item">
+                    <a class="nav-link" href="@Url.Action("MemberDashBoard", "Home",new { userId =Model.User.UserId})">Dashboard</a>
+                </li>
+                <hr />
+                <li class="nav-item">
+                    <a class="nav-link" href="@Url.Action("Index", "TrainingSession",new { userId = Model.User.UserId })"> Training Sessions available</a>
+                </li>
+
+                <hr />
+                <li class="nav-item">
+                    <a class="nav-link" href="@Url.Action("Index", "CheckIn",new { userId = Model.User.UserId })"> Check In</a>
+                </li>
+
+                <hr />
+
+            </ul>
+        </div>
 
 
 
@@ -113,6 +136,18 @@
             <hr />
 
         </div>
+
+    </div>
+    <div class="d-flex h-100">
+
+
+
+
+        @*<div class="container">
+            @RenderSection("BodyContent", required: false)
+            <hr />*@
+
+    </div>
 
     </div>
     <footer>

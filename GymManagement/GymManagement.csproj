@@ -138,6 +138,8 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AttendanceController.cs" />
+    <Compile Include="Controllers\CheckInController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageClassesController.cs" />
     <Compile Include="Controllers\ManageMembershipsController.cs" />
@@ -146,6 +148,7 @@
     <Compile Include="Controllers\ManageTrainingSessionsController.cs" />
     <Compile Include="Controllers\RegistersController.cs" />
     <Compile Include="Controllers\SummaryReportController.cs" />
+    <Compile Include="Controllers\TrainingSessionController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -188,6 +191,14 @@
     <Compile Include="Migrations\202309130620386_newmigrationss.cs" />
     <Compile Include="Migrations\202309130620386_newmigrationss.Designer.cs">
       <DependentUpon>202309130620386_newmigrationss.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202309201036112_AddInterestRecord.cs" />
+    <Compile Include="Migrations\202309201036112_AddInterestRecord.Designer.cs">
+      <DependentUpon>202309201036112_AddInterestRecord.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202309201512092_Addcheckin.cs" />
+    <Compile Include="Migrations\202309201512092_Addcheckin.Designer.cs">
+      <DependentUpon>202309201512092_Addcheckin.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Login.cs" />
@@ -266,6 +277,10 @@
     <Content Include="Views\SummaryReport\Index.cshtml" />
     <Content Include="Views\Registers\Logout.cshtml" />
     <Content Include="Views\Shared\_LayoutAuthenticatedMember.cshtml" />
+    <Content Include="Views\TrainingSession\Index.cshtml" />
+    <Content Include="Views\Shared\otherlayout.cshtml" />
+    <Content Include="Views\CheckIn\Index.cshtml" />
+    <Content Include="Views\Attendance\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -329,6 +344,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202309130620386_newmigrationss.resx">
       <DependentUpon>202309130620386_newmigrationss.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202309201036112_AddInterestRecord.resx">
+      <DependentUpon>202309201036112_AddInterestRecord.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202309201512092_Addcheckin.resx">
+      <DependentUpon>202309201512092_Addcheckin.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

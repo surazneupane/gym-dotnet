@@ -36,36 +36,37 @@
 
     <h5>List of Membership Types</h5>
     <table class="table" border="1">
-        <thead >
+        <thead>
             <tr>
-                <th>ID</th>
+                <th>S.No.</th>
                 <th>Type</th>
                 <th>Cost</th>
                 <th>Action</th>
             </tr>
         </thead>
         <tbody>
-            @foreach (var membershipType in Model)
+            @for (var i = 0; i < Model.Count; i++)
             {
-            <tr>
-                <td>@membershipType.ID</td>
-                <td>@membershipType.Type</td>
-                <td>@membershipType.Cost</td>
-                <td>
-                    <a href="@Url.Action("Edit", "ManageMembershipTypes", new { id = membershipType.ID })" style="display:inline-block; margin-right: 10px;">
-                        <i class="fa fa-edit"></i>
-                    </a>
+                var membershipType = Model[i];
+                <tr>
+                    <td>@(i + 1)</td>
+                    <td>@membershipType.Type</td>
+                    <td>@membershipType.Cost</td>
+                    <td>
+                        <a href="@Url.Action("Edit", "ManageMembershipTypes", new { id = membershipType.ID })" style="display:inline-block; margin-right: 10px;">
+                            <i class="fa fa-edit"></i>
+                        </a>
 
-                    <form action="@Url.Action("Delete", "ManageMembershipTypes")" method="post" style="display:inline-block;" onsubmit="return confirm('Are you sure you want to delete?');">
-                        @Html.AntiForgeryToken()
-                        <input type="hidden" name="id" value="@membershipType.ID" />
-                        <button type="submit" class="btn btn-link">
-                            <i class="fa fa-trash"></i>
-                        </button>
-                    </form>
-                </td>
+                        <form action="@Url.Action("Delete", "ManageMembershipTypes")" method="post" style="display:inline-block;" onsubmit="return confirm('Are you sure you want to delete?');">
+                            @Html.AntiForgeryToken()
+                            <input type="hidden" name="id" value="@membershipType.ID" />
+                            <button type="submit" class="btn btn-link">
+                                <i class="fa fa-trash"></i>
+                            </button>
+                        </form>
+                    </td>
 
-            </tr>
+                </tr>
             }
         </tbody>
     </table>
@@ -74,5 +75,5 @@
             border: 1px solid black;
         }
     </style>
-  
+
 }

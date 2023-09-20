@@ -53,7 +53,7 @@
     <table class="table">
         <thead>
             <tr>
-                <th>ID</th>
+                <th>S.No.</th>
                 <th>Class Name</th>
                 <th>Staff Name</th>
                 <th>Date and Time</th>
@@ -62,10 +62,11 @@
             </tr>
         </thead>
         <tbody>
-            @foreach (var trainingSession in Model.TrainingSessions)
+            @for (var i = 0; i < Model.TrainingSessions.Count; i++)
             {
+                var trainingSession = Model.TrainingSessions[i];
                 <tr>
-                    <td>@trainingSession.ID</td>
+                    <td>@(i + 1)</td>
                     <td>@trainingSession.Class.ClassName</td>
                     <td>@Model.GetUsernameForStaffID(trainingSession.StaffID)</td>
                     <td>@trainingSession.DateTime.ToString("yyyy-MM-dd HH:mm")</td>

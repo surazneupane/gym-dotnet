@@ -1,43 +1,64 @@
-﻿using GymManagement.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
+using GymManagement.Models;
 
 namespace GymManagement.Controllers
 {
     public class SummaryReportController : Controller
     {
-        // GET: SummaryReport
         public ActionResult Index()
         {
             ViewBag.ShowRegisterLoginLinks = false;
-            var summaryData = GetSummaryData(); // Retrieve your data here
-            return View(summaryData);
-           
+
+            var summaryData = GetSummaryData();
+            var interestRecordData = GetInterestRecordData();
+
+            var viewModel = new SummaryReportViewModel
+            {
+                SummaryData = summaryData,
+                InterestRecordData = interestRecordData
+            };
+
+            return View(viewModel);
         }
 
-      
-
-        private List<SummaryReportViewModel> GetSummaryData()
+        private List<SummaryDataViewModel> GetSummaryData()
         {
-            var summaryData = new List<SummaryReportViewModel>();
-
-            using (var context = new ApplicationDbContext()) // Replace with your actual DbContext
+            using (var context = new ApplicationDbContext())
             {
-                summaryData = context.Memberships
+                return context.Memberships
                     .GroupBy(m => m.MembershipType.Type)
-                    .Select(g => new SummaryReportViewModel
+                    .Select(g => new SummaryDataViewModel
                     {
                         MembershipType = g.Key,
                         MemberCount = g.Count()
                     })
                     .ToList();
             }
-
-            return summaryData;
         }
 
+        private List<InterestRecordViewModel> GetInterestRecordData()
+        {
+            using (var context = new ApplicationDbContext())
+            {
+                return context.InterestRecords
+                    .Select(ir => new InterestRecordViewModel
+                    {
+                        SessionID = ir.SessionID,
+                        MemberID = ir.MemberID,
+                        ClassName = context.TrainingSessions
+                                      .Where(ts => ts.ID == ir.SessionID)
+                                      .Select(ts => ts.Class.ClassName)
+                                      .FirstOrDefault(),
+                        UserName = context.Users
+                                     .Where(u => u.UserId == ir.MemberID)
+                                     .Select(u => u.UserName)
+                                     .FirstOrDefault()
+                    })
+                    .ToList();
+            }
+        }
     }
 }

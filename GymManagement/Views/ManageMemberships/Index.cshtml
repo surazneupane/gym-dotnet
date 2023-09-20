@@ -54,7 +54,7 @@
     <table class="table">
         <thead>
             <tr>
-                <th>ID</th>
+                <th>S.No.</th>
                 <th>Member </th>
                 <th>Membership Type</th>
                 <th>Start Date</th>
@@ -63,10 +63,11 @@
             </tr>
         </thead>
         <tbody>
-            @foreach (var membership in Model.Memberships)
+            @for (var i = 0; i < Model.Memberships.Count; i++)
             {
+                var membership = Model.Memberships[i];
                 <tr>
-                    <td>@membership.ID</td>
+                    <td>@(i + 1)</td>
                     <td>@membership.UserName</td>
                     <td>@membership.MembershipType.Type</td>
                     <td>@membership.StartDate.ToString("yyyy-MM-dd")</td>

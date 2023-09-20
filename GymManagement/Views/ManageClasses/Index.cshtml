@@ -21,18 +21,18 @@
     <table class="table">
         <thead>
             <tr>
-                <th>ID</th>
+                <th>S.No.</th>
                 <th>Class Name</th>
                 <th>Action</th>
             </tr>
         </thead>
         <tbody>
-            @foreach (var classItem in Model)
+            @for (var i = 0; i < Model.Count; i++)
             {
+                var classItem = Model[i];
                 <tr>
-                    <td>@classItem.ID</td>
+                    <td>@(i + 1)</td>
                     <td>@classItem.ClassName</td>
-
                     <td>
                         <a href="@Url.Action("Edit", "ManageClasses", new { id = classItem.ID })" style="display:inline-block; margin-right: 10px;">
                             <i class="fa fa-edit"></i>
@@ -46,8 +46,6 @@
                             </button>
                         </form>
                     </td>
-
-
                 </tr>
             }
         </tbody>

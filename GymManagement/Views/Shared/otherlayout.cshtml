@@ -33,7 +33,6 @@
 
         .nav-link {
             color: blueviolet !important;
-            
         }
 
         .sidebar {
@@ -77,7 +76,7 @@
 </head>
 <body>
     <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark">
-        <div class="container"  style="background-color:antiquewhite">
+        <div class="container" style="background-color:antiquewhite">
             <a class="navbar-brand" href="@Url.Action("Index", "Home")">
                 <img src="@Url.Content("~/Images/logo.png")" alt="Logo" style="width: 50px; height: auto;" />
             </a>
@@ -86,11 +85,11 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
 
-            <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between" >
-                <ul class="navbar-nav flex-grow-1" >
+            <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
+                <ul class="navbar-nav flex-grow-1">
                     @*<li>@Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "nav-link" })</li>
-                    <li>@Html.ActionLink("About", "About", "Home", new { area = "" }, new { @class = "nav-link" })</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home", new { area = "" }, new { @class = "nav-link" })</li>*@
+                        <li>@Html.ActionLink("About", "About", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+                        <li>@Html.ActionLink("Contact", "Contact", "Home", new { area = "" }, new { @class = "nav-link" })</li>*@
                 </ul>
 
                 @if (ViewBag.ShowRegisterLoginLinks)
@@ -117,30 +116,10 @@
                 <li class="nav-item">
                     <a class="nav-link" href="@Url.Action("Index", "ManageMembershipTypes")"> MembershipTypes Setting</a>
                 </li>
-                <hr />
-                <li class="nav-item">
-                    <a class="nav-link" href="@Url.Action("Index", "ManageMemberships")"> Memberships Setting</a>
-                </li>
-                <hr />
-                <li class="nav-item">
-                    <a class="nav-link" href="@Url.Action("Index", "ManageClasses")"> Classes Setting</a>
-                </li>
-                <hr />
-                <li class="nav-item">
-                    <a class="nav-link" href="@Url.Action("Index", "ManageTrainingSessions")"> Training Sessions Setting</a>
-                </li>
-                <hr />
-                <li class="nav-item">
-                    <a class="nav-link" href="@Url.Action("Index", "SummaryReport")"> Summary Report</a>
-                </li>
-                <hr />
-                <li class="nav-item">
-                    <a class="nav-link" href="@Url.Action("Index", "Attendance")"> Attendance Report</a>
-                </li>
-                <hr />
+               </hr>
             </ul>
         </div>
-        
+
 
 
         <div class="container">

@@ -25,24 +25,24 @@
                 <tbody>
                     @foreach (var membership in Model.Memberships)
                     {
-                        <tr>
-                            <td>@membership.MemberID</td>
-                            <td>@membership.StartDate</td>
-                            <td>@membership.EndDate</td>
-                            <td>
-                                @{
-                                    var membershipType = Model.MembershipTypes.FirstOrDefault(mt => mt.ID == membership.MembershipTypeID);
-                                    if (membershipType != null)
-                                    {
-                                        @membershipType.Type
-                                    }
-                                    else
-                                    {
-                                        <text>No Membership Type Assigned</text>
-                                    }
+                    <tr>
+                        <td>@membership.MemberID.ToString().Substring(0, 8)</td>
+                        <td>@membership.StartDate</td>
+                        <td>@membership.EndDate</td>
+                        <td>
+                            @{
+                                var membershipType = Model.MembershipTypes.FirstOrDefault(mt => mt.ID == membership.MembershipTypeID);
+                                if (membershipType != null)
+                                {
+                                    @membershipType.Type
                                 }
-                            </td>
-                        </tr>
+                                else
+                                {
+                                    <text>No Membership Type Assigned</text>
+                                }
+                            }
+                        </td>
+                    </tr>
                     }
                 </tbody>
             </table>

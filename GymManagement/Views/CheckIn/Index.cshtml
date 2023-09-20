@@ -1,0 +1,14 @@
+﻿@model GymManagement.Models.MemberDashboardViewModel
+
+@{
+    Layout = "~/Views/Shared/_LayoutAuthenticatedMember.cshtml";
+}
+
+@section BodyContent {
+    <h2>Check In</h2>
+    <form action="@Url.Action("CheckIn", "CheckIn")" method="post">
+       
+        @Html.Hidden("userId", Model.User.UserId)
+        <button type="submit" class="btn btn-primary">Check In</button>
+    </form>
+}

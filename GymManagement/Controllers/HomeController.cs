@@ -42,9 +42,9 @@ namespace GymManagement.Controllers
 
 		public ActionResult MemberDashboard(Guid userId)
 		{
-			ViewBag.ShowRegisterLoginLinks = true;
+            ViewBag.ShowRegisterLoginLinks = true;
 
-			var user = db.Users.FirstOrDefault(u => u.UserId == userId);
+            var user = db.Users.FirstOrDefault(u => u.UserId == userId);
 
 			if (user != null)
 			{
@@ -67,19 +67,7 @@ namespace GymManagement.Controllers
 		}
 
 
-		private Guid GetCurrentMemberId()
-		{
-			if (User.Identity.IsAuthenticated)
-			{
-				return Guid.Parse(User.Identity.GetUserId());
-			}
-			else
-			{
-				
-				return Guid.Empty; 
-			}
-		}
-
+		
 
 		private List<Membership> GetMembershipsForMember(Guid memberId)
 		{

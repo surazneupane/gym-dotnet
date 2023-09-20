@@ -1,4 +1,4 @@
-﻿@model List<GymManagement.Models.SummaryReportViewModel>
+﻿@model GymManagement.Models.SummaryReportViewModel
 
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -15,7 +15,7 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach (var item in Model)
+                @foreach (var item in Model.SummaryData)
                 {
                     <tr>
                         <td>@item.MembershipType</td>
@@ -25,9 +25,33 @@
             </tbody>
         </table>
     </div>
+    <hr />  
+    <h2>Interest Records</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                @*<th>Session ID</th>*@
+                <th>Member Name</th>
+                <th>Class Name</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.InterestRecordData)
+            {
+                <tr>
+                    @*<td>@item.SessionID</td>*@
+                    <td>@item.UserName</td>
+                    <td>@item.ClassName</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
     <style>
         table, th, td {
             border: 1px solid black;
+            
         }
+        
     </style>
 }

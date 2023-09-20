@@ -1,0 +1,49 @@
+﻿@model GymManagement.Models.MemberDashboardViewModel
+
+@{
+    Layout = "~/Views/Shared/_LayoutAuthenticatedMember.cshtml";
+}
+
+@section BodyContent {
+    <script>
+        function disableButton(button) {
+            button.disabled = true;
+        }
+    </script>
+
+    <h2>Available Training Sessions</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Class Name</th>
+                <th>Date and Time</th>
+                <th>Capacity</th>
+                <th>Express Interest</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var session in Model.TrainingSessions.SelectMany(ts => ts.TrainingSessions))
+            {
+                var className = session.Class != null ? session.Class.ClassName : "Class not found"; // Assuming ClassName is a property of Class
+                <tr>
+                    <td>@className</td>
+                    <td>@session.DateTime</td>
+                    <td>@session.Capacity</td>
+                    <td>
+                        @using (Html.BeginForm("ExpressInterest", "TrainingSession", FormMethod.Post))
+                        {
+                            @Html.Hidden("sessionId", session.ID)
+                            @Html.Hidden("userId", Model.User.UserId)
+                            <button type="submit" class="btn btn-primary express-interest-btn" data-session-id="@session.ID" onclick="disableButton(this)">Express Interest</button>
+                        }
+                    </td>
+
+                </tr>
+
+            }
+        </tbody>
+    </table>
+
+}
+
+

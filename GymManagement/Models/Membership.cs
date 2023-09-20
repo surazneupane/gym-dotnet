@@ -91,12 +91,63 @@ namespace GymManagement.Models
         public Register User { get; set; }
         public List<Membership> Memberships { get; set; }
         public List<MembershipType> MembershipTypes { get; set; }
+        public List<TrainingSessionNewViewModel> TrainingSessions { get; set; } // Add this property
+
     }
 
-    public class SummaryReportViewModel
+    public class SummaryDataViewModel
     {
         public string MembershipType { get; set; }
         public int MemberCount { get; set; }
+    }
+
+    public class InterestRecordViewModel
+    {
+        public int SessionID { get; set; }
+        public Guid MemberID { get; set; }
+        public string ClassName { get; set; }
+        public string UserName { get; set; }
+        // Add more properties as needed
+    }
+
+
+    public class SummaryReportViewModel
+    {
+        public List<SummaryDataViewModel> SummaryData { get; set; }
+        public List<InterestRecordViewModel> InterestRecordData { get; set; }
+    }
+
+
+    public class TrainingSessionNewViewModel
+    {
+        public List<TrainingSession> TrainingSessions { get; set; }
+
+    }
+
+    public class InterestRecord
+    {
+        public int ID { get; set; }
+        public Guid MemberID { get; set; }
+        public int SessionID { get; set; }
+    }
+    public class Attendance
+    {
+        public int ID { get; set; }
+        public Guid MemberID { get; set; }
+        public DateTime CheckInDateTime { get; set; }
+    }
+
+
+    public class AttendanceViewModel
+    {
+        public List<AttendanceRecordViewModel> AttendanceRecords { get; set; }
+    }
+
+    public class AttendanceRecordViewModel
+    {
+        public string ClassName { get; set; }
+        public string UserName { get; set; }
+        public DateTime CheckInDateTime { get; set; }
     }
 
 

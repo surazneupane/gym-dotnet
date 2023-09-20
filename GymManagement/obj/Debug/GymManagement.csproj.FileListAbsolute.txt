@@ -137,6 +137,8 @@ C:\Users\Susan\OneDrive\Desktop\Gym\GymManagement\GymManagement\bin\Antlr3.Runti
 C:\Users\Susan\OneDrive\Desktop\Gym\GymManagement\GymManagement\bin\BCrypt.Net.dll
 C:\Users\Susan\OneDrive\Desktop\Gym\GymManagement\GymManagement\bin\EntityFramework.dll
 C:\Users\Susan\OneDrive\Desktop\Gym\GymManagement\GymManagement\bin\EntityFramework.SqlServer.dll
+C:\Users\Susan\OneDrive\Desktop\Gym\GymManagement\GymManagement\bin\Microsoft.AspNet.Identity.Core.dll
+C:\Users\Susan\OneDrive\Desktop\Gym\GymManagement\GymManagement\bin\Microsoft.AspNet.Identity.EntityFramework.dll
 C:\Users\Susan\OneDrive\Desktop\Gym\GymManagement\GymManagement\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
 C:\Users\Susan\OneDrive\Desktop\Gym\GymManagement\GymManagement\bin\Microsoft.Web.Infrastructure.dll
 C:\Users\Susan\OneDrive\Desktop\Gym\GymManagement\GymManagement\bin\Newtonsoft.Json.dll
@@ -152,6 +154,8 @@ C:\Users\Susan\OneDrive\Desktop\Gym\GymManagement\GymManagement\bin\WebGrease.dl
 C:\Users\Susan\OneDrive\Desktop\Gym\GymManagement\GymManagement\bin\BCrypt.Net.xml
 C:\Users\Susan\OneDrive\Desktop\Gym\GymManagement\GymManagement\bin\EntityFramework.xml
 C:\Users\Susan\OneDrive\Desktop\Gym\GymManagement\GymManagement\bin\EntityFramework.SqlServer.xml
+C:\Users\Susan\OneDrive\Desktop\Gym\GymManagement\GymManagement\bin\Microsoft.AspNet.Identity.Core.xml
+C:\Users\Susan\OneDrive\Desktop\Gym\GymManagement\GymManagement\bin\Microsoft.AspNet.Identity.EntityFramework.xml
 C:\Users\Susan\OneDrive\Desktop\Gym\GymManagement\GymManagement\bin\System.Web.Helpers.xml
 C:\Users\Susan\OneDrive\Desktop\Gym\GymManagement\GymManagement\bin\System.Web.Mvc.xml
 C:\Users\Susan\OneDrive\Desktop\Gym\GymManagement\GymManagement\bin\System.Web.Optimization.xml
@@ -170,15 +174,13 @@ C:\Users\Susan\OneDrive\Desktop\Gym\GymManagement\GymManagement\obj\Debug\GymMan
 C:\Users\Susan\OneDrive\Desktop\Gym\GymManagement\GymManagement\obj\Debug\GymManagement.Migrations.changedRegister.resources
 C:\Users\Susan\OneDrive\Desktop\Gym\GymManagement\GymManagement\obj\Debug\GymManagement.Migrations.addedclasswes.resources
 C:\Users\Susan\OneDrive\Desktop\Gym\GymManagement\GymManagement\obj\Debug\GymManagement.Migrations.addedclasswesnew.resources
+C:\Users\Susan\OneDrive\Desktop\Gym\GymManagement\GymManagement\obj\Debug\GymManagement.Migrations.changedstaffidtoguid.resources
+C:\Users\Susan\OneDrive\Desktop\Gym\GymManagement\GymManagement\obj\Debug\GymManagement.Migrations.newmigrationss.resources
 C:\Users\Susan\OneDrive\Desktop\Gym\GymManagement\GymManagement\obj\Debug\GymManagement.csproj.GenerateResource.cache
 C:\Users\Susan\OneDrive\Desktop\Gym\GymManagement\GymManagement\obj\Debug\GymManagement.csproj.CoreCompileInputs.cache
 C:\Users\Susan\OneDrive\Desktop\Gym\GymManagement\GymManagement\obj\Debug\GymManagement.csproj.CopyComplete
 C:\Users\Susan\OneDrive\Desktop\Gym\GymManagement\GymManagement\obj\Debug\GymManagement.dll
 C:\Users\Susan\OneDrive\Desktop\Gym\GymManagement\GymManagement\obj\Debug\GymManagement.pdb
-C:\Users\Susan\OneDrive\Desktop\Gym\GymManagement\GymManagement\obj\Debug\GymManagement.Migrations.changedstaffidtoguid.resources
-C:\Users\Susan\OneDrive\Desktop\Gym\GymManagement\GymManagement\obj\Debug\GymManagement.Migrations.newmigrationss.resources
-C:\Users\Susan\OneDrive\Desktop\Gym\GymManagement\GymManagement\bin\Microsoft.AspNet.Identity.Core.dll
-C:\Users\Susan\OneDrive\Desktop\Gym\GymManagement\GymManagement\bin\Microsoft.AspNet.Identity.EntityFramework.dll
-C:\Users\Susan\OneDrive\Desktop\Gym\GymManagement\GymManagement\bin\Microsoft.AspNet.Identity.Core.xml
-C:\Users\Susan\OneDrive\Desktop\Gym\GymManagement\GymManagement\bin\Microsoft.AspNet.Identity.EntityFramework.xml
+C:\Users\Susan\OneDrive\Desktop\Gym\GymManagement\GymManagement\obj\Debug\GymManagement.Migrations.AddInterestRecord.resources
+C:\Users\Susan\OneDrive\Desktop\Gym\GymManagement\GymManagement\obj\Debug\GymManagement.Migrations.Addcheckin.resources
 C:\Users\Susan\OneDrive\Desktop\Gym\GymManagement\GymManagement\obj\Debug\GymManagement.csproj.AssemblyReference.cache
